@@ -7,9 +7,15 @@ const { registerVal, loginVal } = require("../constant/validate");
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
   const { error } = registerVal(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error)
+    return res.status(400).send({
+      message: error.details[0].message,
+    });
   const emailExist = await User.findOne({ email });
-  if (emailExist) return res.status(400).send("Email already exists!");
+  if (emailExist)
+    return res.status(400).send({
+      message: "Email already exists!",
+    });
   const salt = await bcrypt.genSalt(11);
   const passwordHash = await bcrypt.hash(password, salt);
   const user = new User({
