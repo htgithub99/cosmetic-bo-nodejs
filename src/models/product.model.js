@@ -10,6 +10,7 @@ const Product = new mongoose.Schema(
     contributor_price: { type: Number, require: true },
     image: { type: String },
     branch: { type: String, require: true },
+    barcode: { type: Number, require: true },
   },
   { timestamps: true }
 );

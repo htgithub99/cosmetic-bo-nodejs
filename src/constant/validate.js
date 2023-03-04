@@ -29,6 +29,7 @@ const productVal = (data) => {
     branch: Joi.string().required(),
     entry_price: Joi.number().required(),
     contributor_price: Joi.number().required(),
+    barcode: Joi.number().required(),
   });
   return schema.validate(data);
 };
